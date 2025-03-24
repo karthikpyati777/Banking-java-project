@@ -10,7 +10,7 @@ pipeline{
                  echo 'github url checkout'
             }
         }
-        stage('codecompile with karthik'){
+        stage('code compile with karthik'){
             steps{
                 echo 'starting compiling'
                 sh 'mvn compile'
@@ -31,7 +31,7 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        stage('Buils Docker image'){
+        stage('Build Docker image'){
           steps{
                sh 'docker build -t karthik854/myimg .'
            }
