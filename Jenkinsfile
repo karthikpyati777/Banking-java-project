@@ -28,7 +28,7 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        stage('run dockerfile'){
+        stage('Buils Docker Iamage'){
           steps{
                sh 'docker build -t karthik854/myimg .'
            }
@@ -44,8 +44,8 @@ pipeline{
          }
         stage('port expose'){
             steps{
-                sh 'docker stop myimg'
-                sh 'docker rm myimg'
+                sh 'docker stop karthik854/myimg'
+                sh 'docker rm karthik854/myimg'
                 sh 'docker run -dt -p 8091:8091 karthik854/myimg'
             }
         }   
