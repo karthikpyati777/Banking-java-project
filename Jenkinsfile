@@ -50,7 +50,7 @@ pipeline{
                  // Stop and remove the existing container (if it exists)
                   sh  'docker stop karthik854/myimg'
                   sh  'docker rm karthik854/myimg'
-                  sh 'docker run -dt -p 8091:8091 karthik854/myimg'
+                  sh 'docker run -dt -p 8092:8091 karthik854/myimg'
             }
         }   
     }
