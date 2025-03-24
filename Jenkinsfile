@@ -30,14 +30,23 @@ pipeline{
         }
         stage('run dockerfile'){
           steps{
-               sh 'docker build -t myimg .'
+               sh 'docker build -t karthik854/myimg .'
+           }
+         }
+        stage('Docker Login Credenials'){
+          steps{
+              withCredentials([usernamePassword(credentialsId: 'dockeruserid', passwordVariable: 'dockerhubuserpw', usernameVariable: 'dockerhubusername')]) {
+    // some block
+
+               sh "docker login -u ${dockerhubusername} -p ${dockerhubuserpw}"
+              }
            }
          }
         stage('port expose'){
             steps{
                 sh 'docker stop myimg'
                 sh 'docker rm myimg'
-                sh 'docker run -dt -p 8091:8091 --name c000 myimg'
+                sh 'docker run -dt -p 8091:8091 karthik854/myimg'
             }
         }   
     }
