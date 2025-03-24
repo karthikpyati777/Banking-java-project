@@ -48,11 +48,9 @@ pipeline{
         stage('port expose'){
             steps{
                  // Stop and remove the existing container (if it exists)
-                    sh '''
-                    docker ps -q --filter "name= karthik854/myimg" | grep -q . && docker stop  karthik854/myimg || true
-                    docker ps -aq --filter "name= karthik854/myimg" | grep -q . && docker rm  karthik854/myimg || true
-                    '''
-                sh 'docker run -dt -p 8091:8091 karthik854/myimg'
+                  sh  'docker stop karthik854/myimg'
+                  sh  'docker rm karthik854/myimg'
+                  sh 'docker run -dt -p 8091:8091 karthik854/myimg'
             }
         }   
     }
