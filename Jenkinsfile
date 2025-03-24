@@ -13,7 +13,7 @@ pipeline{
                 sh 'mvn compile'
             }
         }
-        stage('codetesting with karthik'){
+        stage('code testing with karthik'){
             steps{
                 sh 'mvn test'
             }
@@ -28,7 +28,7 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        stage('Buils Docker Iamage'){
+        stage('Buils Docker image'){
           steps{
                sh 'docker build -t karthik854/myimg .'
            }
