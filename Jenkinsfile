@@ -52,6 +52,11 @@ pipeline{
                     sh 'docker rm myimg || true'
                   sh 'docker run -dt -p 8093:8091 karthik854/myimg'
             }
-        }   
+        } 
+        stage('Deploy Application using Ansible') {
+         steps {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
+            }
+      }
     }
 }
