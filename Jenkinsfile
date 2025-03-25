@@ -33,30 +33,27 @@ pipeline{
         }
         stage('Build Docker image'){
           steps{
-               sh 'docker build -t karthik854/myimg .'
+               sh 'docker build -t karthik854/financeme:latest .'
+
            }
          }
         stage('Docker Login Credenials'){
           steps{
               withCredentials([usernamePassword(credentialsId: 'dockeruserid', passwordVariable: 'dockerhubuserpw', usernameVariable: 'dockerhubusername')]) {
-    // some block
-
                sh "docker login -u ${dockerhubusername} -p ${dockerhubuserpw}"
               }
            }
          }
         stage('port expose'){
             steps{
-                 // Stop and remove the existing container (if it exists)
-                   sh 'docker stop myimg || true'
-                   sh 'docker rm myimg || true'
-                   sh 'docker run -dt -p 8075:8091 karthik854/myimg'
+                   sh ' docker run -d -p 8091:8081 karthik854/financeme:latest'
             }
         } 
-        stage('Deploy Application using Ansible') {
+
+      stage('Deploy Application using Ansible') {
          steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
+		ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible2', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
             }
       }
-    }
-}
+          
+      }
