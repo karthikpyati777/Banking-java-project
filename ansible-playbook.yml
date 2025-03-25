@@ -9,7 +9,8 @@
   - name : Install Docker
     command : sudo apt-get install -y docker.io
 
-  - name : Start Docker Service
+ - name : Start Docker Service
     command : sudo systemctl start docker
 
-
+ - name: Deploy Docker Container
+    command: docker run -d -p 8090:8081 karthik854/financeme:latest
