@@ -13,4 +13,4 @@
     command : sudo systemctl start docker
 
  - name: Deploy Docker Container
-    command: docker run -d -p 8093:8081 karthik854/financeme:latest
+    command: docker run -d -p 8094:8081 karthik854/financeme:latest
