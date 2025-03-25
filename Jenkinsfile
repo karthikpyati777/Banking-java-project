@@ -44,9 +44,9 @@ pipeline{
               }
            }
          }
-        stage('port expose'){
+        stage('Image push to Dockerhub'){
             steps{
-                   sh 'docker run -d -p 8096:8081 karthik854/financeme:latest'
+                   sh 'docker push karthik854/financeme:latest'
             }
         } 
 
